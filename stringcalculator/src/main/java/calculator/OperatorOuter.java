@@ -2,20 +2,26 @@ package calculator;
 
 import java.util.HashMap;
 
+/**
+ * operator 들의 InnerClass를 가진 OuterClass
+ * hashMap<key, operator>로 각 클래스의 연산자를 put
+ */
 public class OperatorOuter {
-    public HashMap<String, Operator> hm;
-    public OperatorMap opMap;
+
+    HashMap<String, Operator> calculatorMap;
+    OperatorMap operatorMap;
 
     public OperatorOuter() {
-        hm = new HashMap<String, Operator>();
-        opMap = new OperatorMap();
-        opMap.Add(hm, new Plus());
-        opMap.Add(hm, new Minus());
-        opMap.Add(hm, new Multiply());
-        opMap.Add(hm, new Divider());
+
+        calculatorMap = new HashMap<String, Operator>();
+        operatorMap = new OperatorMap();
+        operatorMap.Add(calculatorMap, new Plus());
+        operatorMap.Add(calculatorMap, new Minus());
+        operatorMap.Add(calculatorMap, new Multiply());
+        operatorMap.Add(calculatorMap, new Divider());
     }
 
-    public class Divider implements  Operator{
+    private class Divider implements  Operator{
         private final String key = "/";
 
         @Override
@@ -29,7 +35,7 @@ public class OperatorOuter {
         }
     }
 
-    public class Minus implements Operator{
+    private class Minus implements Operator{
         private final String key = "-";
 
         @Override
@@ -43,10 +49,10 @@ public class OperatorOuter {
         }
     }
 
-    public class Multiply implements  Operator{
-
+    private class Multiply implements  Operator{
         private final String key = "*";
 
+        @Override
         public String getKey(){
             return key;
         }
@@ -57,7 +63,7 @@ public class OperatorOuter {
         }
     }
 
-    public class Plus implements Operator {
+    private class Plus implements Operator {
         private final String key = "+";
 
         @Override

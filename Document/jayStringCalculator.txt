@@ -1,0 +1,84 @@
+
+import java.util.ArrayList;
+
+public class Expression {
+
+    private ArrayList<String> expressionList;
+
+    public Expression() {
+        expressionList = new ArrayList<>();
+    }
+
+    public Expression(String testExpression) {
+        this();
+    }
+
+    public boolean checkExpression(String input) {
+
+        //20180301 checkExpression의 매개변수 StringCalculrator에서 이미 공백제거 한 문자열로 확인되는데 다시한번.. 한것 아닌가요!? - steve
+        input = input.replace(" ", "");
+
+        int temp = 0;
+        for (int i = 0; i < input.length(); i++ ) {
+            //method extract
+
+            if (Operator.isExist(String.valueOf(input.charAt(i)))) {
+                String addValue = input.substring(temp, i);
+                //이전숫자
+                expressionList.add(addValue);
+                //연산자
+                expressionList.add(String.valueOf(input.charAt(i)));
+                temp = i+1;
+            }
+
+            if (i == input.length() -1) {
+                expressionList.add(input.substring(temp, input.length()));
+            }
+        }
+
+        //20180301 이미 리스트에 연산자와 숫자로 구분하여 잘라 넣었는데 2씩증가하는 인덱스에서 파싱할경우 2자리가 들어올 경우 Exception이 발생될 것 같아요..(상상)- steve
+        for (int i = 0; i< input.length(); i+=2) {
+            isDigit(String.valueOf(input.charAt(i)));
+        }
+
+        return true;
+    }
+
+    public void isDigit(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (Exception e) {
+            System.out.println("error");;
+        }
+    }
+
+    public int calculator(String expression) {
+        checkExpression(expression);
+
+        int result = Integer.valueOf(expressionList.get(0));
+        for (int i = 1; i < expressionList.size(); i++) {
+
+            //method extract
+            //20180301 다형성을 이용(?)해서 계산하는 로직이 추가되면 좋을 것 같아요! - steve
+            String operator = expressionList.get(i);
+            if (Operator.Plus.getCode().equals(operator)) {
+                result = Operator.add(result, Integer.valueOf(expressionList.get(i+1)));
+                continue;
+            }
+            if (Operator.Subtract.getCode().equals(operator)) {
+                result = Operator.subtract(result, Integer.valueOf(expressionList.get(i+1)));
+                continue;
+            }
+            if (Operator.Multiply.getCode().equals(operator)) {
+                result = Operator.multiply(result, Integer.valueOf(expressionList.get(i+1)));
+                continue;
+            }
+            if (Operator.Division.getCode().equals(operator)) {
+                result = Operator.division(result, Integer.valueOf(expressionList.get(i+1)));
+                continue;
+            }
+        }
+
+        return result;
+    }
+}

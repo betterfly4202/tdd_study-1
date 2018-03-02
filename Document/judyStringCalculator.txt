@@ -1,0 +1,70 @@
+package main;
+
+import operate.*;
+
+import java.util.Queue;
+import java.util.Scanner;
+
+public class StringCalculatorMain {
+    public static void main( String[] args ){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("계산할 문자열을 입력해주세요 (ex>11 + 5 * 2) : ");
+        String input_string = scan.nextLine();
+        String[] split_string = input_string.split(" ");
+
+        //20180301 입력값에 대한 유효성을 체크하는 로직인가요!? 입력된것이 없을때 sysout이나 Exception으로 처리하면 어떨지... -steve
+        if( ! isValidInput( split_string ) ){
+            return;
+        }
+
+        String operator = "";
+        int result=0;
+
+		for( int i=0; i<split_string.length ; i++ ){
+			//20180301 연산자가 홀수에만 들어간다면 bryan방식으로 인덱스를 2씩 증가시키면서 
+			//result = calculate( result , Integer.parseInt(split_string[i]) , split_string[i+1] ); 로 처리되는 것도 좋을 것 같습니다!-steve
+            if( i%2 == 1 ){
+                operator = split_string[i];
+                continue;
+            }
+            //20180301 i==0인 경우 for안에 매번 체크하게되니까 for위에 Integer.parseInt(split_string[0])로 넣어주는것은 어떨까요! -steve
+            if( i == 0 ) {
+                result = Integer.parseInt(split_string[i]);
+                continue;
+            }
+
+            result = calculate( result , Integer.parseInt(split_string[i]) , operator );
+
+        }
+
+        System.out.println(input_string+" = "+result);
+    }
+
+    private static boolean isValidInput(String[] split_string) {
+        return true;
+    }
+
+    private static int calculate( int num1, int num2, String operator_string ){
+        Operator operator = null;
+        int result = 0;
+
+        //연산자가 중복되는 것이 들어올때마다 객체가 새롭게 생성되는 것 같습니다! 이미 생성된 각각의 연산자에서 처리될 수 있으면 좋을 것 같아요!(무슨말을 하는건지...ㅠㅠ)- steve
+        if( "+".equals(operator_string) ){
+            operator = new Add( num1 , num2 );
+        }
+        if( "-".equals(operator_string) ){
+            operator = new Minus( num1 , num2 );
+        }
+        if( "*".equals(operator_string) ){
+            operator = new Multiple( num1 , num2 );
+        }
+        if( "/".equals(operator_string) ){
+            operator = new Divide( num1 , num2 );
+        }
+
+        if( operator != null ){
+            result = operator.operate();
+        }
+        return result;
+    }
+}
