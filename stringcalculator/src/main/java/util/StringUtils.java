@@ -4,7 +4,14 @@ package util;
 public class StringUtils {
 
     public static int toInt(String s) {
-        return Integer.parseInt(s);
+
+        int parseVal = 0;
+        try{
+            parseVal = Integer.parseInt(s);
+        }catch (NumberFormatException e){
+            e.getMessage();
+        }
+        return parseVal;
     }
 
     public static String[] splitArgs(String calcArgs) {

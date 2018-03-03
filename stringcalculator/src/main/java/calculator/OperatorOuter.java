@@ -40,7 +40,7 @@ public class OperatorOuter {
 
         @Override
         public int operate(int number1, int number2) {
-            return 0;
+            return number1 - number2;
         }
 
         @Override
@@ -53,13 +53,13 @@ public class OperatorOuter {
         private final String key = "*";
 
         @Override
-        public String getKey(){
-            return key;
+        public int operate(int number1, int number2) {
+            return number1 * number2;
         }
 
         @Override
-        public int operate(int number1, int number2) {
-            return number1 * number2;
+        public String getKey(){
+            return key;
         }
     }
 
