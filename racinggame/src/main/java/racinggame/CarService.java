@@ -10,5 +10,6 @@ public interface CarService {
     int moveRandom();
     boolean moveYn();
     void move(Car car);
+    void printPosition(Car car);
 
 }

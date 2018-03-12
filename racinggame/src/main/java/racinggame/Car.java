@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by orange2652@gmail.com on 2018. 3. 10.
  * Github : https://github.com/myeongkwonhwang
  */
-public class Car implements CarService {
+public class Car implements CarService, Cloneable{
     private int carNum = 0;
     private int position = 0;
     private int round = 0;
@@ -32,7 +32,9 @@ public class Car implements CarService {
 
     @Override
     public boolean moveYn() {
-        if(moveRandom() > 3){
+        int randomValue = moveRandom();
+        System.out.println(this.carNum +"차의 random값  : " +randomValue);
+        if(randomValue > 3){
             return true;
         }
         return false;
@@ -45,5 +47,22 @@ public class Car implements CarService {
             car.position = car.position +1;
     }
 
+    @Override
+    public void printPosition(Car car){
+        System.out.print(car.carNum+"차");
+        for (int i = 0; i < car.position; i++)
+            System.out.print("-");
+            System.out.println();
+    }
 
+    //clone interface 구현
+    @Override
+    protected Car clone() throws CloneNotSupportedException {
+        Car cloneCar = (Car) super.clone();
+        cloneCar.carNum = this.carNum;
+        cloneCar.position = this.position;
+        cloneCar.round = this.round;
+
+        return cloneCar;
+    }
 }
