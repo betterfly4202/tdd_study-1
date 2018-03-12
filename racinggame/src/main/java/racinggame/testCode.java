@@ -32,8 +32,7 @@ public class testCode {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        for (Car car : users
-             ) {
+        for (Car car : users) {
             car.printPosition(car);
         }
     }

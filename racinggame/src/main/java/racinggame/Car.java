@@ -33,7 +33,7 @@ public class Car implements CarService, Cloneable{
     @Override
     public boolean moveYn() {
         int randomValue = moveRandom();
-        System.out.println(this.carNum +"차의 random값  : " +randomValue);
+        /*System.out.println(this.carNum +"차의 random값  : " +randomValue);*/
         if(randomValue > 3){
             return true;
         }
@@ -42,17 +42,18 @@ public class Car implements CarService, Cloneable{
 
     @Override
     public void move(Car car) {
-        System.out.println("차이름 : " +carNum+ ", 차위치 : " +position+ ", 라운드 : "+round);
+        /*System.out.println("차이름 : " +carNum+ ", 차위치 : " +position+ ", 라운드 : "+round);*/
         if(moveYn() == true)
             car.position = car.position +1;
+
     }
 
     @Override
     public void printPosition(Car car){
-        System.out.print(car.carNum+"차");
         for (int i = 0; i < car.position; i++)
             System.out.print("-");
-            System.out.println();
+
+        System.out.println();
     }
 
     //clone interface 구현
