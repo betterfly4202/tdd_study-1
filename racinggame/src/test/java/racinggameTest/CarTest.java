@@ -5,4 +5,18 @@ package racinggameTest;
  * Github : https://github.com/myeongkwonhwang
  */
 public class CarTest {
+
+ /*   Car car = null;
+
+    @Before
+    public void setUp(){
+        car = new Car("황명권");
+    }
+
+    @Test
+    public void exeGoTest(){
+        assertThat(car.go()).contains();
+    }*/
+
+
 }
