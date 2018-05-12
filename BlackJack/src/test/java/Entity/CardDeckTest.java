@@ -2,8 +2,6 @@ package Entity;
 
 import org.junit.*;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -58,7 +56,12 @@ public class CardDeckTest {
     public void cardDeckIdxTest(){
         for (int i=0; i < 2; i ++){
             Card card = cardDeck.cards.pop();
-            assertTrue(card.isIdx());
+            assertTrue(card.isViewFlag());
         }
+    }
+
+    @Test
+    public void cardDeckPopTest(){
+        assertThat(cardDeck.drawingCard(), isA(Card.class));
     }
 }
