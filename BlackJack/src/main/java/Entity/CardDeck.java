@@ -10,11 +10,11 @@ import java.util.Stack;
  * Github : https://github.com/myeongkwonhwang
  */
 public class CardDeck {
-    public Stack<Card> cards;
-    public List<Card> tmpCards;
-    private static final String[] PATTERNS = {"Heart", "Diamond", "Spade", "Clover"};
-    private static final int CARD_CNT = 13;
+    private static final String[] PATTERNS = {"Heart", "Diamond", "Spade", "Clover"};   // 카드모양
+    private static final int CARD_CNT = 13;                                             // 카드숫자
 
+    public Stack<Card> cards;       //섞여있는 카드덱(Stack)
+    public List<Card> tmpCards;     //섞이이전 카드덱(LinkedList)
 
     public CardDeck(){
         this.makeCardPattern();
@@ -24,7 +24,7 @@ public class CardDeck {
     private void cardSuffle() {
         while (tmpCards.size() != 0){
             int idx = (int) (Math.random() * tmpCards.size());
-            if(tmpCards.size() <= 2) tmpCards.get(idx).setIdx(true);
+            if(tmpCards.size() <= 2) tmpCards.get(idx).setViewFlag(true);
 
             cards.push(tmpCards.get(idx));
             tmpCards.remove(idx);
@@ -68,4 +68,7 @@ public class CardDeck {
         return i;
     }
 
+    public Card drawingCard() {
+        return cards.pop();
+    }
 }
