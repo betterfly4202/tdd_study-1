@@ -5,10 +5,11 @@ package Entity;
  * Github : https://github.com/myeongkwonhwang
  */
 public class Card {
-    private boolean idx = false;
-    private String pattern = "";
-    private String cardNum = "";
-    private int cardPoint = 0;
+    private boolean viewFlag = false;    // 첫번째 카드 노출을 위한 boolean 값
+    private String pattern = "";    // card Pattern
+    private String cardNum = "";    // card 숫자/문자
+    private String owner = "";
+    private int cardPoint = 0;      // 카드 point
 
     public Card(String pattern, String cardNum, int cardPoint){
         this.pattern = pattern;
@@ -16,12 +17,12 @@ public class Card {
         this.cardPoint = cardPoint;
     }
 
-    public boolean isIdx() {
-        return idx;
+    public boolean isViewFlag() {
+        return viewFlag;
     }
 
-    public void setIdx(boolean idx) {
-        this.idx = idx;
+    public void setViewFlag(boolean viewFlag) {
+        this.viewFlag = viewFlag;
     }
 
     public String getPattern() {
@@ -48,13 +49,29 @@ public class Card {
         this.cardPoint = cardPoint;
     }
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "idx=" + idx +
-                ", pattern='" + pattern + '\'' +
-                ", cardNum='" + cardNum + '\'' +
-                ", cardPoint=" + cardPoint +
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String noView(){
+        return owner+"Card{" +
+                "pattern='" + "****" + '\'' +
+                ", cardNum='" + "****" + '\'' +
                 '}'+"\n";
     }
+
+    @Override
+    public String toString() {
+        if(this.owner == "DEALER" && this.isViewFlag())
+            return "pattern='" + "****" + '\'' +
+                    ", cardNum='" + "****" + '\'';
+        return "pattern='" + pattern + '\'' +
+                ", cardNum='" + cardNum + '\'';
+    }
+
+
 }
