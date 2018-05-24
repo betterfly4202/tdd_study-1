@@ -15,8 +15,15 @@ public class Gammer extends AbstractGameUser{
     }
 
     @Override
-    public void cardReceive(Card card, String user) {
-        card.setOwner(user);
+    public void cardReceive(Card card) {
         gammerCardList.add(card);
+    }
+
+    @Override
+    public int sumMyCardPoint() {
+        int sumPoint = 0;
+        for (Card card: gammerCardList) sumPoint += card.getCardPoint();
+
+        return sumPoint;
     }
 }

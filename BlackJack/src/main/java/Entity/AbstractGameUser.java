@@ -5,6 +5,8 @@ package Entity;
  * Github : https://github.com/myeongkwonhwang
  */
 abstract class AbstractGameUser {
-    public abstract void cardReceive(Card card, String user);
 
+    public abstract void cardReceive(Card card);
+
+    public abstract int sumMyCardPoint();
 }

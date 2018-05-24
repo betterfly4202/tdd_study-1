@@ -15,8 +15,16 @@ public class Dealer extends AbstractGameUser{
     }
 
     @Override
-    public void cardReceive(Card card, String user) {
-        card.setOwner(user);
+    public void cardReceive(Card card) {
+        if(dealerCardList.size() == 0 ) card.setViewFlag(true);
         dealerCardList.add(card);
+    }
+
+    @Override
+    public int sumMyCardPoint() {
+        int sumPoint = 0;
+        for (Card card: dealerCardList) sumPoint += card.getCardPoint();
+
+        return sumPoint;
     }
 }
