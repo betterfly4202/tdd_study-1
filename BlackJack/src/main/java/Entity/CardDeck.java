@@ -1,6 +1,5 @@
 package Entity;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -24,8 +23,6 @@ public class CardDeck {
     private void cardSuffle() {
         while (tmpCards.size() != 0){
             int idx = (int) (Math.random() * tmpCards.size());
-            if(tmpCards.size() <= 2) tmpCards.get(idx).setViewFlag(true);
-
             cards.push(tmpCards.get(idx));
             tmpCards.remove(idx);
         }

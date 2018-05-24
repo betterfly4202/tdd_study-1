@@ -25,15 +25,13 @@ public class BlackJackGame {
         blackJackGame.gameStart(cardDeck, rule, gammer, dealer);
 
 
-        /*
-        while(!gameEnd){
-            rule.checkPoint(gammer, dealer);
+
+        while(!gameEnd) {
+            //Print
+            rule.cardPrint(gammer, dealer);
+            rule.checkPoint(gammer, dealer, cardDeck);
+
         }
-        */
-
-        //Print
-        rule.cardPrint(gammer, dealer);
-
     }
 
 }
