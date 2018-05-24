@@ -19,8 +19,8 @@ public class BlackJackGameServiceImpl implements BlackJackGameService {
     @Override
     public void init(CardDeck cardDeck, Gammer gammer, Dealer dealer) throws Exception {
         for (int i = 0; i < 2; i++){
-            dealer.cardReceive(cardDeck.drawingCard(),"GAMMER");
-            gammer.cardReceive(cardDeck.drawingCard(),"DEALER");
+            dealer.cardReceive(cardDeck.drawingCard());
+            gammer.cardReceive(cardDeck.drawingCard());
         }
 
     }
