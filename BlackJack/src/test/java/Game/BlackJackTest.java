@@ -1,13 +1,11 @@
 package Game;
 
-import Entity.*;
+import Entity.CardDeck;
+import Entity.Dealer;
+import Entity.Gammer;
 import Entity.Rule;
-import org.hamcrest.Matcher;
 import org.junit.*;
 
-import java.util.Collection;
-
-import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -37,6 +35,7 @@ public class BlackJackTest {
     public void initGameCardCntTest() throws Exception {
         blackJackGame.gameStart(cardDeck, rule, gammer, dealer);
         assertThat(gammer.gammerCardList, hasSize(2));
+        assertThat(gammer.gammerCardList.size(), equalTo(2));
         assertThat(dealer.dealerCardList, hasSize(2));
     }
 }

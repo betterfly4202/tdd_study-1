@@ -22,9 +22,7 @@ public class CardTest {
     }
 
     @Test
-    public void cardNumTest(){
-        assertThat(card.getCardNum()).isEqualTo("A");
-    }
+    public void cardNumTest(){ assertThat(card.getCardNum()).isEqualTo("A"); }
 
     @Test
     public void cardPointTest(){
