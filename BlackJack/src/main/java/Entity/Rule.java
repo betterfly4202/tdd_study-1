@@ -32,8 +32,10 @@ public class Rule {
         Scanner scanner = new Scanner(System.in);
 
         String inputData = scanner.nextLine();
-        if("1".equals(inputData)){
+        if("1".equals(inputData)) {
             gammer.cardReceive(cardDeck.drawingCard());
+        }else{
+            gammerTurn = false;
         }
 
 
